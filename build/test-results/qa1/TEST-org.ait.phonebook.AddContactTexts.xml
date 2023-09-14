@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.ait.phonebook.AddContactTexts" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-09-11T19:59:45" hostname="DESKTOP-OS617JJ" time="1.87">
+  <properties/>
+  <testcase name="addContactPositiveTest" classname="org.ait.phonebook.AddContactTexts" time="1.87"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
