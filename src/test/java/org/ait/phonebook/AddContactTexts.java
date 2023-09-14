@@ -1,6 +1,7 @@
 package org.ait.phonebook;
 
 import org.ait.phonebook.models.Contact;
+import org.ait.phonebook.utils.DataProviders;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -50,16 +51,9 @@ public class AddContactTexts extends TestBase {
         app.getContactHelper().removeContact();
     }
 
-    @DataProvider
-    public Iterator<Object[]> newContact(){
-        List<Object[]> list = new ArrayList<>();
-        list.add(new Object[]{"Oliver1","Oliver Twist", "1243500000567","hty@lkfjlkdf.juh","Berlin","kfje"});
-        list.add(new Object[]{"Oliver2","Oliver Twist", "124358686987","hty@lkfjlkdf.juh","Berlin","kfje"});
-        list.add(new Object[]{"Oliver3","Oliver Twist", "1243534352627", "hty@lkfjlkdf.juh","Berlin","kfje"});
-        return list.iterator();
-    }
 
-    @Test(dataProvider = "newContact")
+
+    @Test(dataProvider = "newContact", dataProviderClass = DataProviders.class)
     public void addContactPositiveTestFromDataProvider(String name,
                                                        String surname, String phone, String email, String address, String description){
 
@@ -75,32 +69,13 @@ public class AddContactTexts extends TestBase {
         Assert.assertTrue(app.getContactHelper().isContactAdded(name));
 
     }
-    @DataProvider
-    public Iterator<Object[]> newContactWithCSVFile() throws IOException {
-        List<Object[]> list = new ArrayList<>();
-
-        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contact.csv")));
 
 
-        String line = reader.readLine();
-        while (line != null){
-            String[] split = line.split(",");
-            list.add(new Object[]{new Contact().setName(split[0])
-                    .setSurname(split[1]).setPhoneNumber(split[2])
-                    .setEmail(split[3])
-                    .setAddress(split[4])
-                    .setDiscription(split[5])});
-            line = reader.readLine();
-        }
-
-
-        return list.iterator();
-    }
-
-    @Test(dataProvider = "newContactWithCSVFile")
+    @Test(dataProvider = "newContactWithCSVFile", dataProviderClass = DataProviders.class)
     public void addContactPositiveTestFromDataProviderWithSCV(Contact contact){
 
         app.getContactHelper().fillContactForm(contact);
+        app.getContactHelper().pauseSelenium(2000);
         app.getContactHelper().clickOnSaveButton();
 
         Assert.assertEquals(Integer.toString(app.getContactHelper().sizeOfContacts()),

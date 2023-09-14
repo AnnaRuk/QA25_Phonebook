@@ -8,9 +8,17 @@
             <class name="org.ait.phonebook.LoginTests">
                 <methods>
                     <exclude name=".*Negative.*"/>
+                    <exclude name=".*Screencast.*"/>
+
                 </methods>
             </class>
-            <class name="org.ait.phonebook.AddContactTexts" />
+            <class name="org.ait.phonebook.AddContactTexts">
+            <methods>
+                <exclude name=".*DataProvider.*"/>
+
+            </methods>
+        </class>
+
             <class name="org.ait.phonebook.RemoveContactTests" />
         </classes>
     </test>

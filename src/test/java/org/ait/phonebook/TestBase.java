@@ -1,7 +1,6 @@
 package org.ait.phonebook;
 
 import org.ait.phonebook.fw.ApplicationManager;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +11,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 public class TestBase {
-
 
     protected static ApplicationManager app = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
@@ -26,15 +25,13 @@ public class TestBase {
 
 
     @AfterSuite(enabled=true)
-    //@AfterMethod()
     public void tearDown(){
         app.stop();
     }
 
     @BeforeMethod
-    public void startTest(Method m){
-        //logger.info("Start test");
-        logger.info("Start test " + m.getName());
+    public void startTest(Method m, Object[] p){
+        logger.info("Start test " + m.getName() + " with data" + Arrays.asList(p));
     }
 
     @AfterMethod

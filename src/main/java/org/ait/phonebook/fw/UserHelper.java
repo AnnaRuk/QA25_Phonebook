@@ -31,9 +31,7 @@ public class UserHelper extends HelperBase{
      //TODO mistake
     public void fillLoginRegstrationForm(User user) {
          type(By.cssSelector("[placeholder='Email']"), user.getEmail());
-         //[placeholder='Password'] - css
          type(By.cssSelector("[placeholder='Password']"), user.getPassword());
-         //  //button[text()='Registration'] - xpath
      }
 
     public boolean isSignOutButtonPresent() {
@@ -46,7 +44,6 @@ public class UserHelper extends HelperBase{
 
     public void login() {
         clickOnLoginLink();
-         //type = filling field
          fillLoginRegstrationForm(new User().setEmail("anna80@gmail.com").setPassword("Qwerty007$"));
          clickOnLoginButton();
      }
